@@ -6,6 +6,7 @@
 package tableFrame;
 
 import Component.DoubleSpinner;
+import ConnectionDB.LogicTools;
 import ConnectionDB.operationDataBase;
 import applicationmaster.Tools;
 import java.awt.Color;
@@ -98,12 +99,15 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
 
         groupButton = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tableData1 = new javax.swing.JTable();
         panelTabel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableData = new javax.swing.JTable();
         BtnSave2 = new rojeru_san.RSButton();
         BtnSave1 = new rojeru_san.RSButton();
         BtnSave3 = new rojeru_san.RSButton();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tableData = new javax.swing.JTable();
         panelRegle = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tr = new DoubleSpinner();
@@ -214,6 +218,7 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableDistrDelete = new javax.swing.JTable();
+        BtnSave4 = new rojeru_san.RSButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabMatrix = new javax.swing.JTable();
@@ -229,35 +234,50 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
         jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        panelTabel.setBackground(new java.awt.Color(0, 0, 0));
-        panelTabel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tableData.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        tableData.setModel(new javax.swing.table.DefaultTableModel(
+        tableData1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        tableData1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ObjectID", "VendorID", "pickup_Date", "dropof_Date", "Trip_Time", "intervalClass", "intervalClassCount", "Passenger_Count ", "Trip_Distance ", "RatecodeId ", "Stor_And_Fwd ", "PulocationId ", "DolocationId ", "Paymment_Type ", "Fare_Amount ", "Extra ", "Mta_Tax ", "Tip_Amount", "Tools_Amount ", "Improvement_Surcharge", "Total_Amount ", "Congestion_Surcharge"
+                "ObjectID", "VendorID", "pickup_Date", "dropof_Date", "Trip_Time", "intervalClass", "intervalClassCount", "Passenger_Count ", "Trip_Distance ", "intervalClass2", "intervalClassCount2", "RatecodeId ", "Stor_And_Fwd ", "PulocationId ", "DolocationId ", "Paymment_Type ", "Fare_Amount ", "Extra ", "Mta_Tax ", "Tip_Amount", "Tools_Amount ", "Improvement_Surcharge", "Total_Amount ", "intervalClass3", "intervalClassCount3", "Congestion_Surcharge"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, true, true, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableData.setFocusable(false);
-        tableData.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        tableData.setRowHeight(25);
-        tableData.setSelectionBackground(new java.awt.Color(255, 255, 0));
-        tableData.setShowVerticalLines(false);
-        tableData.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tableData);
+        tableData1.setFocusable(false);
+        tableData1.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tableData1.setRowHeight(25);
+        tableData1.setSelectionBackground(new java.awt.Color(255, 255, 0));
+        tableData1.setShowVerticalLines(false);
+        tableData1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane12.setViewportView(tableData1);
 
-        panelTabel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1740, 720));
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 1740, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 30, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 70, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Data", jPanel6);
+
+        panelTabel.setBackground(new java.awt.Color(0, 0, 0));
+        panelTabel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BtnSave2.setBackground(new java.awt.Color(102, 102, 102));
         BtnSave2.setText("Save2");
@@ -288,6 +308,25 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
             }
         });
         panelTabel.add(BtnSave3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 720, -1, -1));
+
+        tableData.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        tableData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ObjectID", "VendorID", "pickup_Date", "dropof_Date", "Passenger_Count ", "Trip_Distance ", "RatecodeId ", "Stor_And_Fwd ", "PulocationId ", "DolocationId ", "Paymment_Type ", "Fare_Amount ", "Extra ", "Mta_Tax ", "Tip_Amount", "Tools_Amount ", "Improvement_Surcharge", "Total_Amount ", "Congestion_Surcharge"
+            }
+        ));
+        tableData.setFocusable(false);
+        tableData.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tableData.setRowHeight(25);
+        tableData.setSelectionBackground(new java.awt.Color(255, 255, 0));
+        tableData.setShowVerticalLines(false);
+        tableData.getTableHeader().setReorderingAllowed(false);
+        jScrollPane13.setViewportView(tableData);
+
+        panelTabel.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1740, 720));
 
         jTabbedPane1.addTab("Table Data", panelTabel);
 
@@ -999,6 +1038,11 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
         BtnTrpDist.setBackground(new java.awt.Color(102, 102, 102));
         BtnTrpDist.setText("See Graphics Trip Distance");
         BtnTrpDist.setFont(new java.awt.Font("Roboto Bold", 1, 24)); // NOI18N
+        BtnTrpDist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTrpDistActionPerformed(evt);
+            }
+        });
         jPanel3.add(BtnTrpDist, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 690, 350, 50));
 
         BtnTotAmount.setBackground(new java.awt.Color(102, 102, 102));
@@ -1141,6 +1185,16 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1740, 720));
 
+        BtnSave4.setBackground(new java.awt.Color(102, 102, 102));
+        BtnSave4.setText("Save2");
+        BtnSave4.setFont(new java.awt.Font("Roboto Bold", 1, 24)); // NOI18N
+        BtnSave4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSave4ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(BtnSave4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 740, -1, -1));
+
         jTabbedPane1.addTab("Delete Distrubition", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
@@ -1164,7 +1218,7 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabMatrix);
 
-        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1700, 740));
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1700, 740));
 
         jTabbedPane1.addTab("Matrix", jPanel5);
 
@@ -1174,7 +1228,7 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1759, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
@@ -1395,7 +1449,7 @@ public class tableOperationMongoDB extends javax.swing.JFrame {
    
    }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ConnectionDB.operationDataBase.FillTo_TableView(tableData);
+        ConnectionDB.operationDataBase.FillTo_TableView(tableData1);
         setResizable(false);
         setDefaultCloseOperation(tableOperationMongoDB.DO_NOTHING_ON_CLOSE);
         //radioButton();
@@ -1883,19 +1937,19 @@ static boolean test;
     }//GEN-LAST:event_BtnEliminActionPerformed
 
     private void BtnTAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTAmountActionPerformed
-        TxtResTamount1.setText(operationDataBase.getAver(tableData, 18)+"");
+        TxtResTamount1.setText(operationDataBase.getAver(tableData1, 22)+"");
         TxtMaxTAmount.setText("31107.91");
         TxtMinTamount.setText("-300.3");
     }//GEN-LAST:event_BtnTAmountActionPerformed
 
     private void BtnPCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPCountActionPerformed
-TxtResPCount.setText(operationDataBase.getAver(tableData,5)+"");
+TxtResPCount.setText(operationDataBase.getAver(tableData1,7)+"");
 TxxtMinPasCount.setText("9");
 TxtMaxPassCount.setText("0");
     }//GEN-LAST:event_BtnPCountActionPerformed
 //hna than bdlte pcq nrml tab tbdel ki wdna 1 
     private void BtnTripDistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTripDistActionPerformed
-       TxtResTripDist.setText(operationDataBase.getAver(tableData,6)+"");
+       TxtResTripDist.setText(operationDataBase.getAver(tableData1,8)+"");
       TxtMinTripDist.setText("0");
       TxtMaxtripDistance.setText("128.73");
     }//GEN-LAST:event_BtnTripDistActionPerformed
@@ -1967,14 +2021,41 @@ SpnTripTimeMax1.setEnabled(false);
     }//GEN-LAST:event_radioDistPassCountActionPerformed
 
     private void BtnTotAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTotAmountActionPerformed
-        // TODO add your handling code here:
+Object[] nums = ((DefaultTableModel) tableData1.getModel()).getDataVector().toArray();
+        int intervalClass3CountNegative = 0;
+        int intervalClass3CountMin = 0;
+        int intervalClass3CountShort1 = 0;
+        int intervalClass3CountShort2 = 0;
+        int intervalClass3CountMean1 = 0;
+        int intervalClass3CountMean2 = 0;
+        int intervalClass3CountLong = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (((Vector) nums[i]).get(23).equals(LogicTools.TotalAmountClass.NEGATIVE2.toString()))
+                intervalClass3CountNegative = (int) ((Vector) nums[i]).get(24) ;
+            if (((Vector) nums[i]).get(23).equals(LogicTools.TotalAmountClass.SHORT1_TRIP2.toString()))
+                intervalClass3CountShort1 = (int) ((Vector) nums[i]).get(24);
+            if (((Vector) nums[i]).get(23).equals(LogicTools.TotalAmountClass.SHORT2_TRIP2.toString()))
+                intervalClass3CountShort2 = (int) ((Vector) nums[i]).get(24);
+            if (((Vector) nums[i]).get(23).equals(LogicTools.TotalAmountClass.MIN_TRIP2.toString()))
+                intervalClass3CountMin = (int) ((Vector) nums[i]).get(24);
+            if (((Vector) nums[i]).get(23).equals(LogicTools.TotalAmountClass.MEAN1_TRIP2.toString()))
+                intervalClass3CountMean1 = (int) ((Vector) nums[i]).get(24);
+            if (((Vector) nums[i]).get(23).equals(LogicTools.TotalAmountClass.MEAN2_TRIP2.toString()))
+                intervalClass3CountMean2 = (int) ((Vector) nums[i]).get(24);
+            if (((Vector) nums[i]).get(23).equals(LogicTools.TotalAmountClass.LONG_TRIP2.toString()))
+                intervalClass3CountLong = (int) ((Vector) nums[i]).get(24);
+        }
+        double[] num = {intervalClass3CountNegative, intervalClass3CountMin, intervalClass3CountShort1, intervalClass3CountShort2, intervalClass3CountMean1, intervalClass3CountMean2, intervalClass3CountLong};
+        new Tools().createFrameBarChart_PassengerCount(num, "Total AMount Per Class Graphics", 7);        // TODO add your handling code here:
     }//GEN-LAST:event_BtnTotAmountActionPerformed
 
     private void BtnPassCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPassCountActionPerformed
- double[] num={14645, 721734, 163900, 49019, 24627, 2859, 5, 6, 1};
+         double[] num={14645, 721734, 163900, 49019, 24627, 2859, 5, 6, 1};
         new Tools().createFrameBarChart_PassengerCount(num,"Passenger Count Graphics",9);
+       
+      
     }//GEN-LAST:event_BtnPassCountActionPerformed
-
+ 
     private void BtnDistCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDistCalcActionPerformed
         DefaultTableModel model=(DefaultTableModel) tableDistrDelete.getModel();
         model.setRowCount(0);
@@ -1985,11 +2066,11 @@ SpnTripTimeMax1.setEnabled(false);
         {
         operationDataBase.istogrameDistDB((double)SpnTotAmountMin.getValue(),(double) SpnTotAmountMax.getValue(), "total_amount", tableDistrDelete);
         }
-     /* else if(radioTripTime1.isSelected())
+     else if(radioTripTime1.isSelected())
         {
            
-        operationDataBase.searchTime(tableData, tableDelete , SpnTripTimeMin1.getValue(), SpnTripTimeMax1.getValue());
-        }*/
+        operationDataBase.searchTime(tableData1, tableDistrDelete , (int)SpnTripTimeMin1.getValue(), (int)SpnTripTimeMax1.getValue());
+        }
         else{
         operationDataBase.istogrameDistDB((double)SpnTripDistMin.getValue(),(double) SpnTripDistMax.getValue(), "trip_distance", tableDistrDelete);
         }
@@ -2030,13 +2111,38 @@ SpnTripTimeMax1.setEnabled(false);
     }//GEN-LAST:event_BtnElimin1ActionPerformed
 //hadi ana dertha mn rassi hhh 
     private void BtnTripTime1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTripTime1ActionPerformed
-TxtResTripTime.setText(operationDataBase.getAver(tableData, 4)+"");
+         TxtResTripTime.setText(operationDataBase.getAver(tableData1, 4)+"");
         TxtMaxTripTime1.setText("10000");
         TxtMinTripTime1.setText("-422");        // TODO add your handling code here:
     }//GEN-LAST:event_BtnTripTime1ActionPerformed
 
     private void BtnTotAmount1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTotAmount1ActionPerformed
-        // TODO add your handling code here:
+  Object[] nums = ((DefaultTableModel) tableData1.getModel()).getDataVector().toArray();
+        int intervalClassCountNegative = 0;
+        int intervalClassCountMin = 0;
+        int intervalClassCountShort1 = 0;
+        int intervalClassCountShort2 = 0;
+        int intervalClassCountMean1 = 0;
+        int intervalClassCountMean2 = 0;
+        int intervalClassCountLong = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (((Vector) nums[i]).get(5).equals(LogicTools.TripTimeClass.NEGATIVE.toString()))
+                intervalClassCountNegative = (int) ((Vector) nums[i]).get(6);
+            if (((Vector) nums[i]).get(5).equals(LogicTools.TripTimeClass.SHORT1_TRIP.toString()))
+                intervalClassCountShort1 = (int) ((Vector) nums[i]).get(6);
+            if (((Vector) nums[i]).get(5).equals(LogicTools.TripTimeClass.SHORT2_TRIP.toString()))
+                intervalClassCountShort2 = (int) ((Vector) nums[i]).get(6);
+            if (((Vector) nums[i]).get(5).equals(LogicTools.TripTimeClass.MIN_TRIP.toString()))
+                intervalClassCountMin = (int) ((Vector) nums[i]).get(6);
+            if (((Vector) nums[i]).get(5).equals(LogicTools.TripTimeClass.MEAN1_TRIP.toString()))
+                intervalClassCountMean1 = (int) ((Vector) nums[i]).get(6);
+            if (((Vector) nums[i]).get(5).equals(LogicTools.TripTimeClass.MEAN2_TRIP.toString()))
+                intervalClassCountMean2 = (int) ((Vector) nums[i]).get(6);
+            if (((Vector) nums[i]).get(5).equals(LogicTools.TripTimeClass.LONG_TRIP.toString()))
+                intervalClassCountLong = (int) ((Vector) nums[i]).get(6);
+        }
+        double[] num = {intervalClassCountNegative, intervalClassCountMin, intervalClassCountShort1, intervalClassCountShort2, intervalClassCountMean1, intervalClassCountMean2, intervalClassCountLong};
+        new Tools().createFrameBarChart_PassengerCount(num, "Trip Time Per Class Graphics", 7);         // TODO add your handling code here:
     }//GEN-LAST:event_BtnTotAmount1ActionPerformed
 
     private void radioTripTime1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioTripTime1MouseClicked
@@ -2050,6 +2156,75 @@ TxtResTripTime.setText(operationDataBase.getAver(tableData, 4)+"");
     private void BtnTripTime1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnTripTime1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnTripTime1MouseClicked
+
+    private void BtnTrpDistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTrpDistActionPerformed
+Object[] nums = ((DefaultTableModel) tableData1.getModel()).getDataVector().toArray();
+        int intervalClass2CountNegative = 0;
+        int intervalClass2CountMin = 0;
+        int intervalClass2CountShort1 = 0;
+        int intervalClass2CountShort2 = 0;
+        int intervalClass2CountMean1 = 0;
+        int intervalClass2CountMean2 = 0;
+        int intervalClass2CountLong = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (((Vector) nums[i]).get(9).equals(LogicTools.TripDistanceClass.NEGATIVE1.toString()))
+                intervalClass2CountNegative = (int) ((Vector) nums[i]).get(10);
+            if (((Vector) nums[i]).get(9).equals(LogicTools.TripDistanceClass.SHORT1_TRIP1.toString()))
+                intervalClass2CountShort1 = (int) ((Vector) nums[i]).get(10);
+            if (((Vector) nums[i]).get(9).equals(LogicTools.TripDistanceClass.SHORT2_TRIP1.toString()))
+                intervalClass2CountShort2 = (int) ((Vector) nums[i]).get(10);
+            if (((Vector) nums[i]).get(9).equals(LogicTools.TripDistanceClass.MIN_TRIP1.toString()))
+                intervalClass2CountMin = (int) ((Vector) nums[i]).get(10);
+            if (((Vector) nums[i]).get(9).equals(LogicTools.TripDistanceClass.MEAN1_TRIP1.toString()))
+                intervalClass2CountMean1 = (int) ((Vector) nums[i]).get(10);
+            if (((Vector) nums[i]).get(9).equals(LogicTools.TripDistanceClass.MEAN2_TRIP1.toString()))
+                intervalClass2CountMean2 = (int) ((Vector) nums[i]).get(10);
+            if (((Vector) nums[i]).get(9).equals(LogicTools.TripDistanceClass.LONG_TRIP1.toString()))
+                intervalClass2CountLong = (int) ((Vector) nums[i]).get(10);
+        }
+        double[] num = {intervalClass2CountNegative, intervalClass2CountMin, intervalClass2CountShort1, intervalClass2CountShort2, intervalClass2CountMean1, intervalClass2CountMean2, intervalClass2CountLong};
+        new Tools().createFrameBarChart_PassengerCount(num, "Trip Distance Per Class Graphics", 7);          // TODO add your handling code here:
+    }//GEN-LAST:event_BtnTrpDistActionPerformed
+
+    private void BtnSave4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSave4ActionPerformed
+operationDataBase.loadTime(tableDistrDelete, tableDelete);
+        
+       /* test=true;
+        Vector<ObjectId> list=new Vector<ObjectId>();
+        if(radioDistPassCount.isSelected())
+        {
+            for(int i=0;i<tableDistrDelete.getModel().getRowCount();i++)
+            {
+                list.add((ObjectId) tableDistrDelete.getModel().getValueAt(i,0));
+            }
+            new operationDataBase().fillFautSearch(tableDelete, list);
+        }
+        else if(radioDistTotAmount.isSelected())
+        {
+           for(int i=0;i<tableDistrDelete.getModel().getRowCount();i++)
+            {
+                list.add((ObjectId) tableDistrDelete.getModel().getValueAt(i,0));
+            }
+            new operationDataBase().fillFautSearch(tableDelete, list);
+        }
+        else if(radioDistTripdist.isSelected())
+        {
+            for(int i=0;i<tableDistrDelete.getModel().getRowCount();i++)
+            {
+                list.add((ObjectId) tableDistrDelete.getModel().getValueAt(i,0));
+            }
+            new operationDataBase().fillFautSearch(tableDelete, list);
+        }
+        else(radioTripTime1.isSelected())
+       {
+            for(int i=0;i<tableDistrDelete.getModel().getRowCount();i++)
+            {
+                list.add((ObjectId) tableDistrDelete.getModel().getValueAt(i,0));
+            }
+            new operationDataBase().loadTime(tableDistrDelete,tableDelete);
+        }
+        }  */      // TODO add your handling code here:
+    }//GEN-LAST:event_BtnSave4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2098,6 +2273,7 @@ TxtResTripTime.setText(operationDataBase.getAver(tableData, 4)+"");
     private rojeru_san.RSButton BtnSave1;
     private rojeru_san.RSButton BtnSave2;
     private rojeru_san.RSButton BtnSave3;
+    private rojeru_san.RSButton BtnSave4;
     private rojeru_san.RSButton BtnTAmount;
     private rojeru_san.RSButton BtnTotAmount;
     private rojeru_san.RSButton BtnTotAmount1;
@@ -2156,9 +2332,11 @@ TxtResTripTime.setText(operationDataBase.getAver(tableData, 4)+"");
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2191,6 +2369,7 @@ TxtResTripTime.setText(operationDataBase.getAver(tableData, 4)+"");
     private javax.swing.JRadioButton radiovendor;
     private javax.swing.JTable tabMatrix;
     private javax.swing.JTable tableData;
+    private javax.swing.JTable tableData1;
     private javax.swing.JTable tableDelete;
     private javax.swing.JTable tableDistrDelete;
     private javax.swing.JTable tableExtra;

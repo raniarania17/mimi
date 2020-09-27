@@ -34,6 +34,22 @@ public class operationDataBase {
         int intervalClassCountMean1 = 0;
         int intervalClassCountMean2 = 0;
         int intervalClassCountLong = 0;
+        // for Trip Distance 
+         int intervalClass2CountNegative = 0;
+        int intervalClass2CountMin = 0;
+        int intervalClass2CountShort1 = 0;
+        int intervalClass2CountShort2 = 0;
+        int intervalClass2CountMean1 = 0;
+        int intervalClass2CountMean2 = 0;
+        int intervalClass2CountLong = 0;
+        // for Total amount
+         int intervalClass3CountNegative = 0;
+        int intervalClass3CountMin = 0;
+        int intervalClass3CountShort1 = 0;
+        int intervalClass3CountShort2 = 0;
+        int intervalClass3CountMean1 = 0;
+        int intervalClass3CountMean2 = 0;
+        int intervalClass3CountLong = 0;
 
         try {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -95,6 +111,23 @@ public class operationDataBase {
                     int a = (int) dbo.get("trip_distance");
                     td = td * a;
                 }
+                 String intervalClass2 = LogicTools.calculateIntervalDTrip((int) (double) td).toString();
+
+                /* Interval class Count */
+                if (intervalClass2.equals(LogicTools.TripDistanceClass.NEGATIVE1.toString()))
+                    intervalClass2CountNegative += 1;
+                if (intervalClass2.equals(LogicTools.TripDistanceClass.SHORT1_TRIP1.toString()))
+                    intervalClass2CountShort1 += 1;
+                if (intervalClass2.equals(LogicTools.TripDistanceClass.SHORT2_TRIP1.toString()))
+                    intervalClass2CountShort2 += 1;
+                if (intervalClass2.equals(LogicTools.TripDistanceClass.MIN_TRIP1.toString()))
+                    intervalClass2CountMin += 1;
+                if (intervalClass2.equals(LogicTools.TripDistanceClass.MEAN1_TRIP1.toString()))
+                    intervalClass2CountMean1 += 1;
+                if (intervalClass2.equals(LogicTools.TripDistanceClass.MEAN2_TRIP1.toString()))
+                    intervalClass2CountMean2 += 1;
+                if (intervalClass2.equals(LogicTools.TripDistanceClass.LONG_TRIP1.toString()))
+                    intervalClass2CountLong += 1;
                 int rc;
                 try {
                     rc = (int) dbo.get("RatecodeId");
@@ -173,10 +206,27 @@ public class operationDataBase {
                     int a = (int) dbo.get("total_amount");
                     ttam *= a;
                 }
+                  String intervalClass3 = LogicTools.calculateIntervalTAmount((int) (double) ttam).toString();
+
+                /* Interval class Count */
+                if (intervalClass3.equals(LogicTools.TotalAmountClass.NEGATIVE2.toString()))
+                    intervalClass3CountNegative += 1;
+                if (intervalClass3.equals(LogicTools.TotalAmountClass.SHORT1_TRIP2.toString()))
+                    intervalClass3CountShort1 += 1;
+                if (intervalClass3.equals(LogicTools.TotalAmountClass.SHORT2_TRIP2.toString()))
+                    intervalClass3CountShort2 += 1;
+                if (intervalClass3.equals(LogicTools.TotalAmountClass.MIN_TRIP2.toString()))
+                    intervalClass3CountMin += 1;
+                if (intervalClass3.equals(LogicTools.TotalAmountClass.MEAN1_TRIP2.toString()))
+                    intervalClass3CountMean1 += 1;
+                if (intervalClass3.equals(LogicTools.TotalAmountClass.MEAN2_TRIP2.toString()))
+                    intervalClass3CountMean2 += 1;
+                if (intervalClass3.equals(LogicTools.TotalAmountClass.LONG_TRIP2.toString()))
+                    intervalClass3CountLong += 1;
                 String cngsur = "";
 
                 //rows.add(new Object[]{_ID, vndID, tpepdate, tpepofdate, tf2, intervalClass, pc, td, rc, fwd, plID, dlID, pt, fa, ext, mtx, tam, tla, impsur, ttam, cngsur});
-                model.addRow(new Object[]{_ID, vndID, tpepdate, tpepofdate, tf2, intervalClass, 0, pc, td, rc, fwd, plID, dlID, pt, fa, ext, mtx, tam, tla, impsur, ttam, cngsur});
+                model.addRow(new Object[]{_ID, vndID, tpepdate, tpepofdate, tf2, intervalClass, 0, pc, td,intervalClass2,0, rc, fwd, plID, dlID, pt, fa, ext, mtx, tam, tla, impsur, ttam,intervalClass3,0, cngsur});
 
                 i += 1;
             }
@@ -203,6 +253,54 @@ public class operationDataBase {
                     ((Vector) row).set(6, finalIntervalClassCountMean1);
                 if (((Vector) row).get(5).equals(LogicTools.TripTimeClass.LONG_TRIP.toString()))
                     ((Vector) row).set(6, finalIntervalClassCountLong);
+
+            });
+             int finalIntervalClass2CountNegative = intervalClass2CountNegative;
+            int finalIntervalClass2CountShort = intervalClass2CountShort1;
+            int finalIntervalClass2CountShort1 = intervalClass2CountShort2;
+            int finalIntervalClass2CountMin = intervalClass2CountMin;
+            int finalIntervalClass2CountMean = intervalClass2CountMean1;
+            int finalIntervalClass2CountMean1 = intervalClass2CountMean2;
+            int finalIntervalClass2CountLong = intervalClass2CountLong;
+            model.getDataVector().stream().forEach(row -> {
+                if (((Vector) row).get(9).equals(LogicTools.TripDistanceClass.NEGATIVE1.toString()))
+                    ((Vector) row).set(10, finalIntervalClass2CountNegative);
+                if (((Vector) row).get(9).equals(LogicTools.TripDistanceClass.SHORT1_TRIP1.toString()))
+                    ((Vector) row).set(10, finalIntervalClass2CountShort);
+                if (((Vector) row).get(9).equals(LogicTools.TripDistanceClass.SHORT2_TRIP1.toString()))
+                    ((Vector) row).set(10, finalIntervalClass2CountShort1);
+                if (((Vector) row).get(9).equals(LogicTools.TripDistanceClass.MIN_TRIP1.toString()))
+                    ((Vector) row).set(10, finalIntervalClass2CountMin);
+                if (((Vector) row).get(9).equals(LogicTools.TripDistanceClass.MEAN1_TRIP1.toString()))
+                    ((Vector) row).set(10, finalIntervalClass2CountMean);
+                if (((Vector) row).get(9).equals(LogicTools.TripDistanceClass.MEAN2_TRIP1.toString()))
+                    ((Vector) row).set(10, finalIntervalClass2CountMean1);
+                if (((Vector) row).get(9).equals(LogicTools.TripDistanceClass.LONG_TRIP1.toString()))
+                    ((Vector) row).set(10, finalIntervalClass2CountLong);
+
+            });
+            int finalIntervalClass3CountNegative = intervalClass3CountNegative;
+            int finalIntervalClass3CountShort = intervalClass3CountShort1;
+            int finalIntervalClass3CountShort1 = intervalClass3CountShort2;
+            int finalIntervalClass3CountMin = intervalClass3CountMin;
+            int finalIntervalClass3CountMean = intervalClass3CountMean1;
+            int finalIntervalClass3CountMean1 = intervalClass3CountMean2;
+            int finalIntervalClass3CountLong = intervalClass3CountLong;
+            model.getDataVector().stream().forEach(row -> {
+                if (((Vector) row).get(23).equals(LogicTools.TotalAmountClass.NEGATIVE2.toString()))
+                    ((Vector) row).set(24, finalIntervalClass3CountNegative);
+                if (((Vector) row).get(23).equals(LogicTools.TotalAmountClass.SHORT1_TRIP2.toString()))
+                    ((Vector) row).set(24, finalIntervalClass3CountShort);
+                if (((Vector) row).get(23).equals(LogicTools.TotalAmountClass.SHORT2_TRIP2.toString()))
+                    ((Vector) row).set(24, finalIntervalClass3CountShort1);
+                if (((Vector) row).get(23).equals(LogicTools.TotalAmountClass.MIN_TRIP2.toString()))
+                    ((Vector) row).set(24, finalIntervalClass3CountMin);
+                if (((Vector) row).get(23).equals(LogicTools.TotalAmountClass.MEAN1_TRIP2.toString()))
+                    ((Vector) row).set(24, finalIntervalClass3CountMean);
+                if (((Vector) row).get(23).equals(LogicTools.TotalAmountClass.MEAN2_TRIP2.toString()))
+                    ((Vector) row).set(24, finalIntervalClass3CountMean1);
+                if (((Vector) row).get(23).equals(LogicTools.TotalAmountClass.LONG_TRIP2.toString()))
+                    ((Vector) row).set(24, finalIntervalClass3CountLong);
 
             });
             table.setModel(model);
@@ -1936,54 +2034,115 @@ if( min>val || val>max)
       
       }
       
-      public static void searchTime(JTable tableData,JTable tableDelete ,int min,int max)
+     @SuppressWarnings("empty-statement")
+      public static void searchTime(JTable table1,JTable table2 ,int min,int max)
       {
-      DefaultTableModel model=(DefaultTableModel) tableDelete.getModel();
+      DefaultTableModel model=(DefaultTableModel) table2.getModel();
       //DefaultTableModel model1=(DefaultTableModel) tableData.getModel();
       
-      for(int i=0;i<tableData.getModel().getRowCount();i++)
+      for(int i=0;i<table1.getModel().getRowCount();i++)
+      {//if( min>(int)dbo.get(Column) || (int)dbo.get(Column)>max)
+      if((min>(int)table1.getModel().getValueAt(i, 4)) || (int)table1.getModel().getValueAt(i, 4)>max) 
       {
-      if(((int)min<(int)tableData.getModel().getValueAt(i, 4)) && ((int)tableData.getModel().getValueAt(i, 4)<(int)max) )
-      {
-         ObjectId _ID=(ObjectId) tableData.getModel().getValueAt(i, 0);
-            int vndID=(int) tableData.getModel().getValueAt(i, 1);
-            String tpepdate=(String) tableData.getModel().getValueAt(i, 2);
-            String tpepofdate=(String) tableData.getModel().getValueAt(i, 3);
-       String tf=(String) tableData.getModel().getValueAt(i, 4);
-
+         ObjectId _ID=(ObjectId) table1.getModel().getValueAt(i, 0);
+            int vndID=(int) table1.getModel().getValueAt(i, 1);
+            String tpepdate=(String) table1.getModel().getValueAt(i, 2);
+            String tpepofdate=(String) table1.getModel().getValueAt(i, 3);
+       //String tf=(String) tableData.getModel().getValueAt(i, 4);
+        int tf2=(int) table1.getModel().getValueAt(i, 4);
                  
-            int pc=(int) tableData.getModel().getValueAt(i, 5);
+          //  int pc=(int) table1.getModel().getValueAt(i, 5);
           
-            double td=(double) tableData.getModel().getValueAt(i, 6);
+        /*    double td=(double) table1.getModel().getValueAt(i, 6);
            
-            int rc=(int) tableData.getModel().getValueAt(i, 7);
+            int rc=(int) table1.getModel().getValueAt(i, 7);
            
-            String fwd=(String) tableData.getModel().getValueAt(i, 8);
-            int plID=(int) tableData.getModel().getValueAt(i, 9);
+            String fwd=(String) table1.getModel().getValueAt(i, 8);
+            int plID=(int) table1.getModel().getValueAt(i, 9);
             
-            int dlID=(int) tableData.getModel().getValueAt(i, 10);
+            int dlID=(int) table1.getModel().getValueAt(i, 10);
            
-            int pt=(int) tableData.getModel().getValueAt(i, 11);
+            int pt=(int) table1.getModel().getValueAt(i, 11);
            
-            int fa=(int) tableData.getModel().getValueAt(i, 12);
+            int fa=(int) table1.getModel().getValueAt(i, 12);
            
-            double ext=(double) tableData.getModel().getValueAt(i, 13);
+            double ext=(double) table1.getModel().getValueAt(i, 13);
             
-            double mtx=(double) tableData.getModel().getValueAt(i, 14);
+            double mtx=(double) table1.getModel().getValueAt(i, 14);
            
-            int tam=(int) tableData.getModel().getValueAt(i, 15);
+            int tam=(int) table1.getModel().getValueAt(i, 15);
           
-            int tla=(int) tableData.getModel().getValueAt(i, 16);
+            int tla=(int) table1.getModel().getValueAt(i, 16);
            
-            double impsur=(double) tableData.getModel().getValueAt(i, 17);
+            double impsur=(double) table1.getModel().getValueAt(i, 17);
             
-            double ttam=(double) tableData.getModel().getValueAt(i, 18);
+            double ttam=(double) table1.getModel().getValueAt(i, 18);
            
-           String cngsur="";
-           model.addRow(new Object[]{_ID,vndID,tpepdate,tpepofdate,tf,pc,td,rc,fwd,plID,dlID,pt,fa,ext,mtx,tam,tla,impsur,ttam,cngsur});
+           String cngsur=(String) table1.getModel().getValueAt(i, 19);*/
+           model.addRow(new Object[]{_ID,vndID,tpepdate,tpepofdate,tf2});
+           // zdte mhithem kamel mbghawcheeeeee 
+      } // mhit pc kanet mour tf2,cd,td,rc,fwd,plID,dlID,pt,fa,ext,mtx,tam,tla,impsur,ttam,cngsur
       }
+    //  table2.setModel(model);
+      
+         if(table2.getModel().getRowCount()==0)
+    {
+    Tools.showMessage("There is no erroneous recording ");
+    }
+    else{
+    table2.setModel(model);
+    Tools.showMessage("The number of erroeneous records are :"+table2.getModel().getRowCount()+"Rows");
+    }}
+
+ public static void loadTime(JTable table1,JTable table2 )
+      {
+      DefaultTableModel model=(DefaultTableModel) table2.getModel();
+      //DefaultTableModel model1=(DefaultTableModel) tableData.getModel();
+      
+      for(int i=0;i<table1.getModel().getRowCount();i++)
+      {//if( min>(int)dbo.get(Column) || (int)dbo.get(Column)>max)
+     
+         ObjectId _ID=(ObjectId) table1.getModel().getValueAt(i, 0);
+            int vndID=(int) table1.getModel().getValueAt(i, 1);
+            String tpepdate=(String) table1.getModel().getValueAt(i, 2);
+            String tpepofdate=(String) table1.getModel().getValueAt(i, 3);
+       //String tf=(String) tableData.getModel().getValueAt(i, 4);
+        int tf2=(int) table1.getModel().getValueAt(i, 4);
+                 
+          //  int pc=(int) table1.getModel().getValueAt(i, 5);
+          
+        /*    double td=(double) table1.getModel().getValueAt(i, 6);
+           
+            int rc=(int) table1.getModel().getValueAt(i, 7);
+           
+            String fwd=(String) table1.getModel().getValueAt(i, 8);
+            int plID=(int) table1.getModel().getValueAt(i, 9);
+            
+            int dlID=(int) table1.getModel().getValueAt(i, 10);
+           
+            int pt=(int) table1.getModel().getValueAt(i, 11);
+           
+            int fa=(int) table1.getModel().getValueAt(i, 12);
+           
+            double ext=(double) table1.getModel().getValueAt(i, 13);
+            
+            double mtx=(double) table1.getModel().getValueAt(i, 14);
+           
+            int tam=(int) table1.getModel().getValueAt(i, 15);
+          
+            int tla=(int) table1.getModel().getValueAt(i, 16);
+           
+            double impsur=(double) table1.getModel().getValueAt(i, 17);
+            
+            double ttam=(double) table1.getModel().getValueAt(i, 18);
+           
+           String cngsur=(String) table1.getModel().getValueAt(i, 19);*/
+           model.addRow(new Object[]{_ID,vndID,tpepdate,tpepofdate,tf2});
+           // zdte mhithem kamel mbghawcheeeeee 
+      } // mhit pc kanet mour tf2,cd,td,rc,fwd,plID,dlID,pt,fa,ext,mtx,tam,tla,impsur,ttam,cngsur
+      table2.setModel(model);
       }
-      tableDelete.setModel(model);
-      }
-        
+    
+
 }
+      
